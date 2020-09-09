@@ -6,6 +6,7 @@ DAILY_WAGE=0
 HALF_TIME=4;
 day=1
 hour=0
+total_wage=0
 while [[ $day -lt 20 && $hour -lt 100 ]]
 do
 
@@ -34,12 +35,22 @@ function WorkHour()
 	totalHour=$((day*8+hour))
 	return $totalHour
 }
+function TotalWage()
+{
+	totalHour=$1
+	totalWage=$((totalHour*WAGE_PER_HOUR))
+	echo "total Wage: $totalWage"
+}
 
 WorkHour $day $hour
 retHour=$?
+
+TotalWage $retHour
+
 
 
 echo "Total Hour = $retHour"
 echo "Daily wage = $DAILY_WAGE"
 echo "Full Day: $day"
 echo "Part Time: $hour"
+echo "total Wage : $retTotalWage"
