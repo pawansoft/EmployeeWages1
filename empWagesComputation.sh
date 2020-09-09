@@ -27,6 +27,19 @@ do
 		;; 
 	esac
 done
+function WorkHour()
+{
+	day=$1
+	hour=$2
+	totalHour=$((day*8+hour))
+	return $totalHour
+}
+
+WorkHour $day $hour
+retHour=$?
+
+
+echo "Total Hour = $retHour"
 echo "Daily wage = $DAILY_WAGE"
 echo "Full Day: $day"
 echo "Part Time: $hour"
