@@ -1,3 +1,13 @@
 #!/bin/bash
 
-echo "Welcome to Employee Wages  master Branch"
+
+isPresent=1;
+
+attendance=$((RANDOM%2))
+
+if [ $attendance -eq $isPresent ]
+then
+	echo "Employee is present"
+else
+	echo "Employee is Absent" 
+fi
