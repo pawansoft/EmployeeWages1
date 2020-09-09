@@ -13,13 +13,11 @@ do
 	attendance=$((RANDOM%3))
 	case $attendance in
 	1)
-		DAILY_WAGE=$((DAILY_WAGE + $WAGE_PER_HOUR * $FULL_DAY_HOUR))
 		echo "Employee is present"
 		day=$((day+1))
 		;;
 	2)
 		echo "Half Time"
-		DAILY_WAGE=$((DAILY_WAGE + $HALF_TIME * $WAGE_PER_HOUR))
 		hour=$((hour+4))
 		;;
 
@@ -41,16 +39,23 @@ function TotalWage()
 	totalWage=$((totalHour*WAGE_PER_HOUR))
 	echo "total Wage: $totalWage"
 }
+function StoreDailyDayAndTotalWage()
+{
+	day=$1
+	DAILY_WAGE=$((DAILY_WAGE + $day * $WAGE_PER_HOUR * $FULL_DAY_HOUR))
+	totalHour=$2
+        totalWage=$((totalHour*WAGE_PER_HOUR))
+        echo "total Wage: $totalWage"
+	echo "day : $day"
+	echo "daily Wage: $DAILY_WAGE"
+
+}
 
 WorkHour $day $hour
 retHour=$?
 
 TotalWage $retHour
 
+StoreDailyDayAndTotalWage $day $retHour
 
 
-echo "Total Hour = $retHour"
-echo "Daily wage = $DAILY_WAGE"
-echo "Full Day: $day"
-echo "Part Time: $hour"
-echo "total Wage : $retTotalWage"
